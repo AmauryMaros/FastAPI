@@ -9,7 +9,6 @@ print(settings.database_name)
 
 #models.Base.metadata.create_all(bind=engine)   # for sqlalchemy before alembic
 
-
 app = FastAPI()
 
 # to allow requests from different domains
@@ -18,7 +17,7 @@ origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_orgins = origins,
+    allow_origins = origins,
     allow_credentials = True,
     allow_methods = ["*"],
     allow_headers = ["*"]
