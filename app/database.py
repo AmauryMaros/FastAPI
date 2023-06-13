@@ -6,7 +6,7 @@ from psycopg2.extras import RealDictCursor
 import time
 from .config import settings
 
-SQLACHEMY_DATABASE_URL = f"postgresql+psycopg2://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}"
+SQLACHEMY_DATABASE_URL = f"postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}"
 #'postgresql://<username>:<password>@<ip-address/hostname>/<database_name>'  //  'postgresql://<username>:<password>@<hostname>:<port>/<database_name>'
 
 engine = create_engine(SQLACHEMY_DATABASE_URL)
