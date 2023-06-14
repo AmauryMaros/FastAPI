@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 print(settings.database_name)
 
-models.Base.metadata.create_all(bind=engine)   # for sqlalchemy before alembic
+#models.Base.metadata.create_all(bind=engine)   # for sqlalchemy before alembic
 
 app = FastAPI()
 
@@ -31,7 +31,7 @@ app.include_router(vote.router)
 
 @app.get("/")
 def root():
-    return {"message": "Hello World"}
+    return {"message": "Hello World !!!"}
 
 
 
