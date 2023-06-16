@@ -5,14 +5,11 @@ from .routers import post, user, auth, vote
 from .config import settings
 from fastapi.middleware.cors import CORSMiddleware
 
-print(settings.database_name)
-
 #models.Base.metadata.create_all(bind=engine)   # for sqlalchemy before alembic
 
 app = FastAPI()
 
 # to allow requests from different domains
-
 origins = ["*"]
 
 app.add_middleware(
@@ -31,7 +28,7 @@ app.include_router(vote.router)
 
 @app.get("/")
 def root():
-    return {"message": "trying the bind mount service with docker!!"}
+    return {"message": "Hello World"}
 
 
 
