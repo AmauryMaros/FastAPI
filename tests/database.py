@@ -17,7 +17,7 @@ TestingSessionLocal = sessionmaker(autocommit = False, autoflush = False, bind =
 #client = TestClient(app)
 # To create & destroy test db at every test :
 
-@pytest.fixture(scope="module")
+@pytest.fixture
 def session():
     Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
@@ -27,7 +27,7 @@ def session():
     finally:
         db.close()
 
-@pytest.fixture(scope="module")
+@pytest.fixture
 def client(session):
     def override_get_db():
         try:
