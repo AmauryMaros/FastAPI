@@ -8,8 +8,12 @@ def test_root(client):
     assert res.status_code == 200
 
 def test_create_user(client):
-    res = client.post("/users", json = {"email":"test@gmail.com", "password":"test"})
+    res = client.post("/users/",json = {"email":"test@gmail.com", "password":"test"})
 
     new_user = schemas.UserOut(**res.json())
     assert new_user.email == "test@gmail.com"
     assert res.status_code == 201
+
+def test_login_user(client):
+    res = client.post("/login", data = {"username":"test@gmail.com", "password":"test"})    # in the request form, email is switched by username
+    assert res.status_code == 200
