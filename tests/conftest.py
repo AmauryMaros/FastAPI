@@ -14,13 +14,12 @@ from alembic import command
 
 
 # SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:password123@localhost:5432/fastapi_test'
-SQLALCHEMY_DATABASE_URL = f'postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}_test'
+SQLALCHEMY_DATABASE_URL = f"postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}_test"
 
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
-TestingSessionLocal = sessionmaker(
-    autocommit=False, autoflush=False, bind=engine)
+TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 @pytest.fixture()
@@ -80,34 +79,18 @@ def token(test_user):
 
 @pytest.fixture
 def authorized_client(client, token):
-    client.headers = {
-        **client.headers,
-        "Authorization": f"Bearer {token}"
-    }
+    client.headers = {**client.headers,
+                      "Authorization": f"Bearer {token}"}
 
     return client
 
 
 @pytest.fixture
 def test_posts(test_user, session, test_user2):
-    posts_data = [{
-        "title": "first title",
-        "content": "first content",
-        "owner_id": test_user['id']
-    }, {
-        "title": "2nd title",
-        "content": "2nd content",
-        "owner_id": test_user['id']
-    },
-        {
-        "title": "3rd title",
-        "content": "3rd content",
-        "owner_id": test_user['id']
-    }, {
-        "title": "3rd title",
-        "content": "3rd content",
-        "owner_id": test_user2['id']
-    }]
+    posts_data = [{"title": "first title","content": "first content","owner_id": test_user['id']},
+                  {"title": "2nd title","content": "2nd content","owner_id": test_user['id']},
+                  {"title": "3rd title","content": "3rd content","owner_id": test_user['id']},
+                  {"title": "3rd title","content": "3rd content","owner_id": test_user2['id']}]
 
     def create_post_model(post):
         return models.Post(**post)
